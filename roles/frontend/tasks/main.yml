@@ -3,6 +3,11 @@
     name: nginx
     state: installed
 
+- name: Enable service Nginx
+  ansible.builtin.service:
+    name: nginx
+    enabled: yes
+
 - name: Start service Nginx
   ansible.builtin.service:
     name: nginx
