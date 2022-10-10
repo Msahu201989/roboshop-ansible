@@ -3,10 +3,7 @@
     name: nginx
     state: installed
 
-- name: Start Nginx Service
-  ansible.builtin.systemd:
-    state: started
-    name: nginx
+#Start nginx service placed down as per requirement in code
 
 #- name: Download Nginx web content  (substitute below line 21 both download & extract in one play)
 #  ansible.builtin.get_url:
@@ -30,11 +27,19 @@
     dest: /usr/share/nginx/html/
     remote_src: yes
 
-# mv frontend-main/localhost.conf /etc/nginx/default.d/roboshop.conf
+# mv frontend-main/localhost.conf /etc/nginx/default.d/roboshop.conf (Replacing of local host with robo.conf pending)
 - name: Copy Roboshop Nginx COnfig File
   ansible.builtin.copy:
     src: roboshop.conf # This file we created in roles>frontend>files>roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
+
+# mv frontend-main/localhost.conf /etc/nginx/default.d/roboshop.conf (will do later for replacing local host)
+
+- name: Start Nginx Service
+  ansible.builtin.systemd:
+    state: started # starting service
+    name: nginx
+    enabled: yes # enabling service
 
 
 
