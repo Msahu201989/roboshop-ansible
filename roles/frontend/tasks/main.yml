@@ -8,15 +8,21 @@
     state: started
     name: nginx
 
-- name: Download Nginx web content
-  ansible.builtin.get_url:
-    url: https://github.com/roboshop-devops-project/frontend/archive/main.zip
-    dest: /tmp/frontend.zip
+#- name: Download Nginx web content  (substitute below line 21 both download & extract in one play)
+#  ansible.builtin.get_url:
+#    url: https://github.com/roboshop-devops-project/frontend/archive/main.zip
+#    dest: /tmp/frontend.zip
 
 - name: Removing old web content
   ansible.builtin.file:
     path: /usr/share/nginx/html
     state: absent
+
+- name: Download Nginx web content & Extract
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
+    dest: /usr/share/nginx/html
+    remote_src: yes
 
 
 
