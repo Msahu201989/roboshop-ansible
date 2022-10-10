@@ -48,13 +48,17 @@
 # mongo < catalogue.js
 # mongo < users.js
 
-- name: Load Catalogue Schema
-  community.mongodb.mongodb_shell:
-    file: "/tmp/mongodb-main/catalogue.js"
-    idempotent: yes
+#- name: Load Catalogue Schema  (Commented this because we are using LOOP below in one query will update users and catalogue .js)
+#  community.mongodb.mongodb_shell:
+#    file: "/tmp/mongodb-main/catalogue.js"
+#    idempotent: yes
 # above play  path we pulled from above cd /tmp/mongodb-main & file is catalogue.js
-- name: Load users Schema
+
+- name: Load Schema
   community.mongodb.mongodb_shell:
-    file: "/tmp/mongodb-main/users.js"
+    file: "/tmp/mongodb-main/{{item}}.js"
     idempotent: yes
+  loop:
+    - catalogue
+    - user
 # here path we pulled from above cd /tmp/mongodb-main & file is users.js
