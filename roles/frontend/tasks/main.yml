@@ -36,7 +36,7 @@
 # mv frontend-main/localhost.conf /etc/nginx/default.d/roboshop.conf (will do later for replacing local host)
 
 - name: Start Nginx Service
-  ansible.builtin.systemd:
+  ansible.builtin.systemd:  #(A single module will take care for start service & enable)
     state: started # starting service
     name: nginx
     enabled: yes # enabling service
