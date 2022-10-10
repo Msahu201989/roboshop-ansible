@@ -48,7 +48,7 @@
 # mongo < catalogue.js
 # mongo < users.js
 
-#- name: Load Catalogue Schema  (Commented this because we are using LOOP below in one query will update users and catalogue .js)
+# name: Load Catalogue Schema  (Commented this because we are using LOOP below in one query will update users and catalogue .js)
 #  community.mongodb.mongodb_shell:
 #    file: "/tmp/mongodb-main/catalogue.js"
 #    idempotent: yes
