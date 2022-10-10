@@ -60,5 +60,5 @@
     idempotent: yes
   loop:
     - catalogue
-    - user
+    - users
 # here path we pulled from above cd /tmp/mongodb-main & file is users.js
