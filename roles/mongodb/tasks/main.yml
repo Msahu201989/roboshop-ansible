@@ -41,3 +41,19 @@
     src: https://github.com/roboshop-devops-project/mongodb/archive/main.zip
     dest: /tmp
     remote_src: yes
+
+# cd /tmp
+# unzip mongodb.zip --->>> already done above
+# cd mongodb-main   ---->> below module
+# mongo < catalogue.js
+# mongo < users.js
+
+- name: Load Catalogue Schema
+  community.mongodb.mongodb_shell:
+    file: "/tmp/mongodb.main/catalogue.js"  # here path we pulled from above cd /tmp/mongodb-main & file is catalogue.js
+    idempotent: yes
+
+- name: Load users Schema
+  community.mongodb.mongodb_shell:
+    file: "/tmp/mongodb.main/users.js"  # here path we pulled from above cd /tmp/mongodb-main & file is users.js
+    idempotent: yes
