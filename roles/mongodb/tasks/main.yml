@@ -50,11 +50,11 @@
 
 - name: Load Catalogue Schema
   community.mongodb.mongodb_shell:
-    file: "/tmp/mongodb.main/catalogue.js"
+    file: "/tmp/mongodb-main/catalogue.js"
     idempotent: yes
 # above play  path we pulled from above cd /tmp/mongodb-main & file is catalogue.js
 - name: Load users Schema
   community.mongodb.mongodb_shell:
-    file: "/tmp/mongodb.main/users.js"
+    file: "/tmp/mongodb-main/users.js"
     idempotent: yes
 # here path we pulled from above cd /tmp/mongodb-main & file is users.js
