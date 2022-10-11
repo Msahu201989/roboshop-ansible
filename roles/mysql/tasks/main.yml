@@ -60,7 +60,7 @@
 #mysql -u root -p${ROBOSHOP_MYSQL_PASSWORD} <shipping.sql &>>LOG_FILE
 
 - name: configure MySQL repo
-  ansible.buitin.copy:
+  ansible.builtin.copy:
     src: mysql.repo
     dest: /etc/yum.repos.d/mysql.repo
 
