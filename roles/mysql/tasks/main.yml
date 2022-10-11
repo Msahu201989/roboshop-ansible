@@ -68,7 +68,7 @@
   ansible.builtin.shell: dnf module disable mysql -y
 
 - name: Install MYSQL Community server
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: install mysql-community-server
     state: installed
 
