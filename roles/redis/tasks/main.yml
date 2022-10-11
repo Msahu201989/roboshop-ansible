@@ -39,7 +39,7 @@
 
 - name: updating ipaddress for Redis
   ansible.builtin.replace:
-    path: ""{{item}}"
+    path: "{{item}}"
     regexp: '127.0.0.1'
     replace: '0.0.0.0'
   loop:
