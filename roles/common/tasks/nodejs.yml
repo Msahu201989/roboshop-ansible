@@ -1,10 +1,4 @@
-#echo downloading nodejs
-#curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$LOG_FILE
-#statuscheck $?
-#echo Installing Nodejs
-#yum install nodejs -y &>>$LOG_FILE
-#statuscheck $?
-#
+
 #APP_PREREQ
 #
 #echo installing dependencies
@@ -24,3 +18,7 @@
 
 - name: Import App-Pre-req Task file
   ansible.builtin.import_tasks: app-prereq.yml
+
+- name: Install Nodejs Dependencies
+  community.general.npm:
+    path: /home/roboshop/{{COMPONENT}}
