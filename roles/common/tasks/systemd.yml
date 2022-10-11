@@ -1,0 +1,23 @@
+
+
+
+#echo daemon reload starting ${COMPONENT} service
+#systemctl daemon-reload
+#statuscheck $?
+#systemctl start ${COMPONENT} &>>$LOG_FILE
+#systemctl enable ${COMPONENT} &>>$LOG_FILE
+#statuscheck $?
+#
+#}
+
+- name: copy SyStemd Service File
+  ansible.builtin.copy:
+    src: {{COMPONENT}}.service
+    dest: /etc/systemd/system/{{COMPONENT}}.service   #mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/
+
+- name: start {{COMPONENT}} service
+  ansible.builtin.systemd:
+    name: {{COMPONENT}}
+    state: restarted
+    enabled: yes
+    daemon-reload: yes

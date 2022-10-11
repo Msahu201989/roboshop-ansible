@@ -1,9 +1,4 @@
 
-#APP_PREREQ
-#
-#echo installing dependencies
-#npm install &>>$LOG_FILE
-#statuscheck $?
 #
 #SYSTEMD_SETUP
 #}
@@ -23,3 +18,6 @@
   community.general.npm:    # This module install npm
     path: /home/roboshop/{{COMPONENT}}
   become_user: roboshop # we switch robo user because robo user should own these files
+
+- name: Import Systemd Tasks
+  ansible.builtin.import_tasks: systemd.yml
