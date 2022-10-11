@@ -20,5 +20,6 @@
   ansible.builtin.import_tasks: app-prereq.yml
 
 - name: Install Nodejs Dependencies
-  community.general.npm:
+  community.general.npm:    # This module install npm
     path: /home/roboshop/{{COMPONENT}}
+  become_user: roboshop # we switch robo user because robo user should own these files
