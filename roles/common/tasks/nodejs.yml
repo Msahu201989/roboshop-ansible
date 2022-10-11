@@ -1,8 +1,4 @@
 
-#
-#SYSTEMD_SETUP
-#}
-
 - name: Setup Nodejs Repo
   ansible.builtin.shell: https://rpm.nodesource.com/setup_lts.x | bash
 
