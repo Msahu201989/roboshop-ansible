@@ -75,13 +75,13 @@
 - name: Start MYsql Service
   ansible.builtin.systemd:
     name: mysqld
-    enabled: yes
     state: started
+    enabled: yes
 
 - name: Load the file
   ansible.builtin.slurp:
     src: /var/log/mysqld.log
-    register: out    # please check for this what is this
+  register: out    # please check for this what is this
 
 - name: print out
   debug:
