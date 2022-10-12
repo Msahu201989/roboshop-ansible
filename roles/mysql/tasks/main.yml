@@ -83,6 +83,18 @@
     src: /var/log/mysqld.log
   register: out    # please check for this what is this
 
+- name: Install mysqlclient pip3
+  ansible.builtin.pip:
+    name: mysqlclient
+    executable: pip3
+
+- name: Check MySql credentials # THis play wont work if mySQL PIP3 not installed so we did install up
+  community.mysql.mysql_info:
+    login_user: root
+    login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
+    filter: version
+
+
 - name: print out
   debug:
     msg: "{{ out['content'] | b64decode | regex_findall('temporary password.*') |join(' ')  | split(' ') | last }}"
