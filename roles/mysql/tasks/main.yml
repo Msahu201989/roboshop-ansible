@@ -99,7 +99,14 @@
     login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
     filter: version
   ignore_errors: yes # If this play fails script will continue to next one
+  register: mysql_conn_status
+#The Above whole play is we make condition if mysql status is a failure then go and change password if all good not require
 
+- name: copy SQL file to reset password
+  ansible.builtin.copy:
+    src: reset-root-pass.sql
+    dest: /tmp/reset-root-pass.sql
+  when: mysql_conn_status is failed
 
 - name: print out
   debug:
