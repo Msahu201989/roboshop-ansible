@@ -123,5 +123,5 @@
 
 - name: print
   debug:
-    msg: "{{plugin_status}}"
+    msg: "{{plugin_status | regex findall('temporary password.*)}}"
 
