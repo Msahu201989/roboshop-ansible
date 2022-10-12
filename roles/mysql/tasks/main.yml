@@ -103,7 +103,7 @@
 #The Above whole play is we make condition if mysql status is a failure then go and change password if all good not require
 
 - name: copy SQL file to reset password
-  ansible.builtin.copy:
+  ansible.builtin.template:   # Earlier it was ansible.builtin.copy but we using template so changed
     src: reset-root-pass.sql
     dest: /tmp/reset-root-pass.sql
   when: mysql_conn_status is failed
