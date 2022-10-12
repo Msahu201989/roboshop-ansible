@@ -77,3 +77,6 @@
     name: mysqld
     enabled: yes
     state: started
+
+- name: Testing Nginx
+  ansible.builtin.shell: yum install nginx -y
