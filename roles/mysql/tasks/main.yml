@@ -125,3 +125,4 @@
 - name: print
   debug:
     msg: "{{plugin_status}}"
+
