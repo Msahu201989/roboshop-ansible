@@ -118,8 +118,8 @@
     query: 'show plugins'
     login_user: root
     login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
-    ignore_errors: yes    # If this play fails script will continue to next one
-    register: plugin_status
+  ignore_errors: yes    # If this play fails script will continue to next one
+  register: plugin_status
 
 - name: print
   debug:
