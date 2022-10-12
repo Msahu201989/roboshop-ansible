@@ -34,6 +34,7 @@
 #
 #echo "show databases;" | mysql -uroot -p${ROBOSHOP_MYSQL_PASSWORD}  &>>LOG_FILE
 #if [ $? -ne 0 ]; then
+
 #echo "Change the default password "
 #mysql --connect-expired-password -uroot -p"${DEFAULT_PASSWORD}" </tmp/root-pass.sql &>>LOG_FILE
 #statuscheck $?
@@ -93,7 +94,7 @@
     name: mysqlclient
     executable: pip3
 
-- name: Check MySql Credentials # THis play wont work if mySQL PIP3 not installed so we did install up
+- name: Check MySql Credentials   # THis play wont work if mySQL PIP3 not installed so we did install up
   community.mysql.mysql_info:
     login_user: root
     login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
@@ -103,11 +104,11 @@
 #The Above whole play is we make condition if mysql status is a failure then go and change password if all good not require
 
 - name: copy SQL file to reset password
-  ansible.builtin.template:   # Earlier it was ansible.builtin.copy but we using template so changed
+  ansible.builtin.template:   # Earlier it was ansible.builtin.copy but we using template so changed to change password to roboshop@1
     src: reset-root-pass.sql
     dest: /tmp/reset-root-pass.sql
   when: mysql_conn_status is failed
 
-- name: print out
-  debug:
-    msg: "{{ out['content'] | b64decode | regex_findall('temporary password.*') |join(' ')  | split(' ') | last }}"
+- name: Change Mysql root password
+  ansible.builtin.shell: mysql --connect-expired-password -uroot -p""{{ out['content'] | b64decode | regex_findall('temporary password.*') |join(' ')  | split(' ') | last }}" </tmp/reset-root-pass.sql
+  when: mysql_conn_status is failed
