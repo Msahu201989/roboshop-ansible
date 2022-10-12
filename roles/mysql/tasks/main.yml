@@ -127,7 +127,7 @@
 
 - name: Uninstall Password validate Plugin
   community.mysql.mysql_query:
-    query: 'uninstall plugins validate_password;'
+    query: 'uninstall plugin validate_password;'
     login_user: root
     login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
   when: plugin_status | regex_findall('validate_password') | length >0
