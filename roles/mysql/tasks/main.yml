@@ -121,10 +121,6 @@
   ignore_errors: yes    # If this play fails script will continue to next one
   register: plugin_status
 
-- name: print
-  debug:
-    msg: "{{plugin_status | regex_findall('validate_password') | length}}"
-
 - name: Uninstall Password validate Plugin
   community.mysql.mysql_query:
     query: 'uninstall plugin validate_password;'
@@ -132,6 +128,18 @@
     login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
   when: plugin_status | regex_findall('validate_password') | length >0
 
+- name: downloading Database Schema & Extract
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/mysql/archive/main.zip
+    dest: /tmp
+    remote_src: yes
 
+- name: Load Schema
+  community.mysql.mysql_db:
+    state: import
+    name: all
+    target: /tmp/mysql-main/shipping.sql
+    login_user: root
+    login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
 
 
