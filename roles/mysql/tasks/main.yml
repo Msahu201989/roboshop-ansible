@@ -78,5 +78,11 @@
     enabled: yes
     state: started
 
-- name: Testing Nginx
-  ansible.builtin.shell: yum install nginx -y
+- name: Load the file
+  ansible.builtin.slurp:
+    src: /var/log/mysqld.log
+    register: out    # please check for this what is this
+
+- name: print out
+  debug:
+    msg: "{{out}}"
