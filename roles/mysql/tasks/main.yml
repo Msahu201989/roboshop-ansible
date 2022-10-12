@@ -85,4 +85,4 @@
 
 - name: print out
   debug:
-    msg: '{{out}}'
+    msg: ""{{ out['content'] | b64decode | regex findall('temporary password.*') |join(' ') | split(' ') | last }}"
