@@ -93,7 +93,7 @@
     name: mysqlclient
     executable: pip3
 
-- name: Check MySql credentials # THis play wont work if mySQL PIP3 not installed so we did install up
+- name: Check MySql Credentials # THis play wont work if mySQL PIP3 not installed so we did install up
   community.mysql.mysql_info:
     login_user: root
     login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
