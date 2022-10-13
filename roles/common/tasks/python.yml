@@ -12,7 +12,7 @@
 - name: Install PIP Requirement file
   ansible.builtin.pip:
     requirements: /home/roboshop/{{COMPONENT}}/requirements.txt
-    executable: pip3.3
+    executable: pip3
 
 - name: print
   debug:
