@@ -28,7 +28,7 @@
 - name: Setup Rabbitmq Repos
   ansible.builtin.shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
 
-- name: Install Erland & RabbitMq'
+- name: Install Erland & RabbitMq
   ansible.biultin.yum:
     name: "{{item}}"
     state: installed
