@@ -14,7 +14,7 @@ catalogue.roboshop.internal
 cart.roboshop.internal
 
 [USER]
-user.roboshop.inernal
+user.roboshop.internal
 
 [MYSQL]
 mysql.roboshop.internal
