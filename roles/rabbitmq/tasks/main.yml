@@ -46,7 +46,7 @@
 - name: Add Applocation User
   community.rabbitmq.rabbitmq_user:
     user: roboshop                                #echo "add app user tag in rabbitmq"
-    password: "{{ROBOSHOP_RABBITMQ_PASSWORD}}"
+    password: "{{ROBOSHOP_RABBITMQ_PASSWORD}}"    # Will user this ROBOSHOP_RABBITMQ_PASSWORD=roboshop@123 (password ) while executing play from cmd
     vhost: /
     configure_priv: .*
     read_priv: .*

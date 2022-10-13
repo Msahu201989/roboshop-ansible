@@ -1,0 +1,18 @@
+- name: Install Maven
+  ansible.builtin.yum:
+    name:
+      - python36
+      - gcc
+      - python36-devel
+    state: installed
+
+- name: Import App Pre-req From task FIle
+  ansible.builtin.import_tasks: app-prereq.yml
+
+- name: Install PIP Requirement file
+  ansible.builtin.pip:
+    requirements: /home/roboshop/{{COMPONENT}}/requirements.txt
+    executable: pip3.3
+
+- name: Import Systemd Tasks
+  ansible.builtin.import_tasks: systemd.yml
