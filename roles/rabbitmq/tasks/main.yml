@@ -43,3 +43,13 @@
     enabled: yes
     state: started
 
+- name: Add Applocation User
+  community.rabbitmq.rabbitmq_user:
+    user: roboshop                                #echo "add app user tag in rabbitmq"
+    password: "{{ROBOSHOP_RABBITMQ_PASSWORD}}"
+    vhost: /
+    configure_priv: .*
+    read_priv: .*
+    write_priv: .*
+    state: present
+    tags: administrator             #echo "add permission for app user in rabbitmq"
