@@ -29,7 +29,7 @@
   ansible.builtin.shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
 
 - name: Install Erland & RabbitMq
-  ansible.biultin.yum:
+  ansible.builtin.yum:
     name: "{{item}}"
     state: installed
   loop:
