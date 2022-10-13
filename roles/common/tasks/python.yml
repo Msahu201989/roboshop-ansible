@@ -24,8 +24,8 @@
     regexp: '^{{item.name}}'
     line: uid = {{item.id}}
   loop:
-    - { name: "uid", id: "{{appuder.uid}}"}
-    - { name: "gid", id: "{{appuder.group}}"}
+    - { name: "uid", id: "{{appuser.uid}}"}
+    - { name: "gid", id: "{{appuser.group}}"}
 
 - name: Import Systemd Tasks
   ansible.builtin.import_tasks: systemd.yml
