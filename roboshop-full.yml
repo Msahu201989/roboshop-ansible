@@ -1,0 +1,65 @@
+- name: Frontend Setup
+  hosts: FRONTEND
+  roles:
+    - frontend
+
+- name: Mongodb Setup
+  hosts: MONGODB
+  roles:
+    - mongodb
+
+- name: Catalogue Setup
+  hosts: CATALOGUE
+  roles:
+    - catalogue
+
+- name: Redis Setup
+  hosts: REDIS
+  roles:
+    - redi
+
+
+- name: User Setup
+  hosts: USER
+  roles:
+    - user
+
+- name: Cart Setup
+  hosts: CART
+  roles:
+    - cart
+
+- name: Mysql Setup
+  hosts: MYSQL
+  roles:
+    - mysql
+
+- name: Shipping Setup
+  hosts: SHIPPING
+  roles:
+    - shipping
+
+
+- name: Frontend Setup
+  hosts: RABBITMQ
+  roles:
+    - rabbitmq
+
+- name: Payment Setup
+  hosts: PAYMENT
+  roles:
+    - payment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
