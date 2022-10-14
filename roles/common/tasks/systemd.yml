@@ -1,6 +1,6 @@
 
 - name: copy SyStemd Service File
-  ansible.builtin.copy:
+  ansible.builtin.templates:
     src: "{{COMPONENT}}.service"
     dest: /etc/systemd/system/{{COMPONENT}}.service   #mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/
 
