@@ -1,0 +1,5 @@
+- name: Restart Nginx Service   # This is Handler name
+  ansible.builtin.systemd:  #(A single module will take care for start service & enable)
+    state: restarted
+    name: nginx
+    enabled: yes # enabling service
