@@ -22,15 +22,30 @@
     path: /home/roboshop/{{COMPONENT}}
     state: absent
 
-- name: Download Application content
-  ansible.builtin.unarchive:
-    src: https://github.com/roboshop-devops-project/{{COMPONENT}}/archive/main.zip
-    dest: /tmp
-    remote_src: yes
+#- name: Download Application content
+ # ansible.builtin.unarchive:
+  #  src: https://github.com/roboshop-devops-project/{{COMPONENT}}/archive/main.zip
+   # dest: /tmp
+   # remote_src: yes
 
-- name: COpy extracted App content
-  ansible.builtin.copy:
-    src: /tmp/{{COMPONENT}}-main/  #using / after static to copy whole content
-    dest: /home/roboshop/{{COMPONENT}}/
-    remote_src: yes
-  become_user: roboshop # we switch robo user because robo user should own these files check file owner should now change to roboshop
+- name: Create Application Directory
+  ansible.builtin.file:
+    path: /home/roboshop/{{COMPONENT}}
+    state: directory
+    owner: roboshop
+    group: roboshop
+
+- name: Downloading Application content
+  ansible.builtin.unarchive:
+     src: http://{{NEXUS_USER}}:{{NEXUS_PASS}}@nexus.roboshop.internal:8081/repository/{{COMPONENT}}/{{COMPONENT}}-{{APP_VERSION}}.zip
+     dest: /home/roboshop/{{COMPONENT}}
+     remote_src: yes
+  become_user: roboshop
+
+
+#- name: Copy extracted App content
+ # ansible.builtin.copy:
+  #src: /tmp/{{COMPONENT}}-main/  #using / after static to copy whole content
+ #   dest: /home/roboshop/{{COMPONENT}}/
+ #   remote_src: yes
+ # become_user: roboshop # we switch robo user because robo user should own these files check file owner should now change to roboshop
