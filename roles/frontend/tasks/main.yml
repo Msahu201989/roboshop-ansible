@@ -15,17 +15,32 @@
     path: /usr/share/nginx/html
     state: absent
 
-- name: Download Nginx web content & Extract
+# COmmented these lines to move towards standard process of downloading the content from artifact manager(NEXUS) rather than download from GIT
+#
+#- name: Download Nginx web content & Extract
+#  ansible.builtin.unarchive:
+ #   src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
+  #  dest: /tmp
+   # remote_src: yes
+
+#- name: COpy extracted content
+#  ansible.builtin.copy:
+#    src: /tmp/frontend-main/static/  #using / after static to copy whole content
+#    dest: /usr/share/nginx/html/
+#    remote_src: yes
+
+- name: Create application directory
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: directory
+
+- name: Downloading Application content
   ansible.builtin.unarchive:
-    src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
-    dest: /tmp
+    src: http://{{NEXUS_USER}}:{{NEXUS_PASS}}@nexus.roboshop.internal:8081/repository/{{COMPONENT}}/{{COMPONENT}}-{{APP_VERSION}}.zip
+    dest: /usr/share/nginx/html
     remote_src: yes
 
-- name: COpy extracted content
-  ansible.builtin.copy:
-    src: /tmp/frontend-main/static/  #using / after static to copy whole content
-    dest: /usr/share/nginx/html/
-    remote_src: yes
+
 
 # mv frontend-main/localhost.conf /etc/nginx/default.d/roboshop.conf (Replacing of local host with robo.conf pending)
 - name: Copy Roboshop Nginx COnfig File
