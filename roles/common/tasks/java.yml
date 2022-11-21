@@ -1,16 +1,21 @@
-- name: Install Maven
+#- name: Install Maven
+#  ansible.builtin.yum:
+#    name: maven
+#    state: installed
+
+- name: Install Java
   ansible.builtin.yum:
-    name: maven
+    name: java
     state: installed
 
 - name: Adding Application User
   ansible.builtin.import_tasks: app-prereq.yml
 
-- name: Install Maven Dependencies
-  ansible.builtin.shell: mvn clean package && mv target/{{COMPONENT}}-1.0.jar {{COMPONENT}}.jar
-  args:
-    chdir: //home/roboshop/{{COMPONENT}}   #goto particular directory and execute it
-  become_user: roboshop # we switch robo user because robo user should own these files
+#- name: Install Maven Dependencies
+#  ansible.builtin.shell: mvn clean package && mv target/{{COMPONENT}}-1.0.jar {{COMPONENT}}.jar
+#  args:
+#    chdir: //home/roboshop/{{COMPONENT}}   #goto particular directory and execute it
+#  become_user: roboshop # we switch robo user because robo user should own these files
 
 - name: Import Systemd Tasks
   ansible.builtin.import_tasks: systemd.yml
