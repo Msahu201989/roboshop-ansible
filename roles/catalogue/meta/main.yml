@@ -1,2 +1,7 @@
-dependencies:        # using it call common role dependencies that is meta main ymk to set hostname
-  -role: common
+dependencies:
+  - role: common
+
+
+
+
+  # using it call common role dependencies that is meta main ymk to set hostname
