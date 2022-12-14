@@ -15,5 +15,11 @@
     path: /home/roboshop/{{COMPONENT}}
   become_user: roboshop # we switch robo user because robo user should own these files
 
+- name: download the DocumentDB pem file
+  get_url:
+    url: https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem
+    dest: /home/roboshop/{{COMPONENT}}/rds-combined-ca-bundle.pem
+  become_user: roboshop
+
 - name: Import Systemd Tasks
   ansible.builtin.import_tasks: systemd.yml
