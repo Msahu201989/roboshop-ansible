@@ -10,3 +10,7 @@ SyslogIdentifier=shipping
 
 [Install]
 WantedBy=multi-user.target
+
+
+
+##Note line 6 we have set up paratemeter store to verify video 63 59min using for app version check common default main .yml for app version
