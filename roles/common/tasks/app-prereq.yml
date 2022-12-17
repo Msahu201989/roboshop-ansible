@@ -17,10 +17,7 @@
     name: roboshop
   register: appuser
 
-- name: Delete old content
-  ansible.builtin.file:
-    path: /home/roboshop/{{COMPONENT}}
-    state: absent
+
 
 #COMMENTED THIS to Move towards standard process of download content from artifact rathen GIT hub
 #- name: Download Application content
@@ -31,7 +28,7 @@
 
 - name: Create Application Directory
   ansible.builtin.file:
-    path: /home/roboshop/{{COMPONENT}}
+    path: /home/roboshop/{{COMPONENT}}-tmp
     state: directory
     owner: roboshop
     group: roboshop
@@ -39,9 +36,19 @@
 - name: Downloading Application content
   ansible.builtin.unarchive:
      src: http://{{NEXUS_USER}}:{{NEXUS_PASS}}@nexus.roboshop.internal:8081/repository/{{COMPONENT}}/{{COMPONENT}}-{{APP_VERSION}}.zip
-     dest: /home/roboshop/{{COMPONENT}}
+     dest: /home/roboshop/{{COMPONENT}}-tmp
      remote_src: yes
   become_user: roboshop
+
+- name: Delete old content
+  ansible.builtin.file:
+    path: /home/roboshop/{{COMPONENT}}
+    state: absent
+
+## This Approach is taken to avoid application downtine if the download file is high and download speed is slow
+- name: Rename Dir
+  ansible.builtin.shell: mv /home/roboshop/{{COMPONENT}}-tmp /home/roboshop/{{COMPONENT}}
+
 
 
   #COMMENTED THIS to Move towards standard process of download content from artifact rathen GIT hub
