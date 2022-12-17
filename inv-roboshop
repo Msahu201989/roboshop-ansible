@@ -11,7 +11,7 @@ mongodb.roboshop.internal
 catalogue.roboshop.internal
 
 [CART]
-cart.roboshop.internal
+cart-dev.roboshop.internal
 
 [USER]
 user.roboshop.internal
