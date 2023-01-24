@@ -1,6 +1,11 @@
-- name: Roboshop Setup
-  hosts: all
-  become: yes
-  serial: 1
-  roles:
-     - "{{ROLE_NAME}}"
+- name: Install Nginx
+  ansible.builtin.yum:
+    name: nginx
+    state: installed
+
+#- name: Roboshop Setup
+#  hosts: all
+#  become: yes
+#  serial: 1
+#  roles:
+#     - "{{ROLE_NAME}}"
