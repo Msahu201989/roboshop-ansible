@@ -3,6 +3,14 @@
     name: nginx
     state: installed
 
+- name: Start Nginx Service
+  ansible.builtin.systemd:
+    state: started
+    name: nginx
+
+
+
+
 #- name: Roboshop Setup
 #  hosts: all
 #  become: yes
